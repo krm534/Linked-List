@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string>
 #include "Header.h"
 
 using namespace std;
@@ -10,16 +11,17 @@ void freeUpMemory(Node**);
 void deletion(Node**, int);
 void printList(Node*);
 void control();
+bool handleActions(string, string, Node*, int);
 
+// Main function
 int main() {
 	control();
-
 	system("pause");
 }
 
 // Control function
 void control() {
-	int linkedListType, number, stopAppend, stopPrepend, stopDelete, stopLoop;
+	int linkedListType, stopLoop;
 
 	// Head node
 	Node* head = nullptr;
@@ -31,87 +33,39 @@ void control() {
 		// Prepend
 		if (linkedListType == 1) {
 			while (true) {
-				cout << "Enter a number to prepend to linked list." << endl;
-				cin >> number;
-
-				// Prepend new node
-				prepend(&head, number);
-
-				// Print list so far
-				printList(head);
-
-				cout << "Enter 0 to prepend another value or 1 to exit" << endl;
-				cin >> stopPrepend;
-
-				if (stopPrepend == 0) {
+				string prependError = "Enter a number to prepend to linked list.";
+				string prependPrompt = "Enter 0 to prepend another value or 1 to exit.";
+				
+				if (handleActions(prependError, prependPrompt, head, 1)) {
 					continue;
 				}
-				else if (stopPrepend == 1) {
-					break;
-				}
 				else {
-					cout << "Error occurred" << endl;
+					break;
 				}
 			}
 		}
 		// Append
 		else if (linkedListType == 2) {
 			while (true) {
-				cout << "Enter a number to append to linked list." << endl;
-				cin >> number;
-
-				// Append new node
-				append(&head, number);
-
-				// Print list so far
-				printList(head);
-
-				cout << "Enter 0 to append another value or 1 to exit" << endl;
-				cin >> stopAppend;
-
-				if (stopAppend == 0) {
+				string appendError = "Enter a number to append to linked list.";
+				string appendPrompt = "Enter 0 to append another value or 1 to exit.";
+				
+				if (handleActions(appendError, appendPrompt, head, 2)) {
 					continue;
 				}
-				else if (stopAppend == 1) {
-					break;
-				}
 				else {
-					cout << "Error occurred" << endl;
+					break;
 				}
 			}
 		}
 		// Delete
 		else if (linkedListType == 3) {
 			while (true) {
-
-				// Check if linked list is empty
-				if (head == nullptr) {
-					cout << "Deletion Error: linked list is empty" << endl;
-					break;
-				}
-
-				cout << "Enter a number to delete from the linked list." << endl;
-				cin >> number;
-
-				// Delete new node
-				deletion(&head, number);
-
-				// Print list so far
-				printList(head);
-
-				if (head != nullptr) {
-					cout << "Enter 0 to delete another value or 1 to exit" << endl;
-					cin >> stopDelete;
-
-					if (stopDelete == 0) {
-						continue;
-					}
-					else if (stopDelete == 1) {
-						break;
-					}
-					else {
-						cout << "Error occurred" << endl;
-					}
+				string deletionError = "Deletion Error: linked list is empty.";
+				string deletionPrompt = "Enter a number to delete from the linked list.";
+				
+				if (handleActions(deletionError, deletionPrompt, head, 3)) {
+					continue;
 				}
 				else {
 					break;
@@ -133,6 +87,53 @@ void control() {
 			break;
 		}
 	}
+}
+
+// Handles action function calls
+bool handleActions(string error, string prompt, Node* head, int type) {
+		// Check if linked list is empty
+		int stopDelete, number;
+
+		if (head == nullptr) {
+			cout << error << endl;
+			return 0;
+		}
+
+		cout << prompt << endl;
+		cin >> number;
+
+		// Delete new node
+		if (type == 1) {
+			prepend(&head, number);
+		}
+		else if (type == 2) {
+			append(&head, number);
+		}
+		else {
+			deletion(&head, number);
+		}
+
+		// Print list so far
+		printList(head);
+
+		if (head != nullptr) {
+			cout << "Enter 0 to delete another value or 1 to exit" << endl;
+			cin >> stopDelete;
+
+			if (stopDelete == 0) {
+				return 1;
+			}
+			else if (stopDelete == 1) {
+				return 0;
+			}
+			else {
+				cout << "Error occurred! Invalid command entered!" << endl;
+				return 0;
+			}
+		}
+		else {
+			return 0;
+		}
 }
 
 // Append Node to Linked List
