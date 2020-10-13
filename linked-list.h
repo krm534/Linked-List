@@ -10,5 +10,5 @@ class LinkedList {
         void deletion(Node** head, int number);
         void printList(Node* head);
         void control();
-        bool handleActions(std::string prompt, Node* head, int type);
+        bool handleActions(std::string prompt, Node** head, int type);
 };

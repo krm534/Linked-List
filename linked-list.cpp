@@ -16,7 +16,7 @@ void LinkedList::control() {
 			while (true) {
 				std::string prependPrompt = "Enter a number to prepend to linked list.";
 				
-				if (handleActions(prependPrompt, head, 1)) {
+				if (handleActions(prependPrompt, &head, 1)) {
 					continue;
 				}
 				else {
@@ -29,7 +29,7 @@ void LinkedList::control() {
 			while (true) {
 				std::string appendPrompt = "Enter a number to append to linked list.";
 				
-				if (handleActions(appendPrompt, head, 2)) {
+				if (handleActions(appendPrompt, &head, 2)) {
 					continue;
 				}
 				else {
@@ -42,7 +42,7 @@ void LinkedList::control() {
 			while (true) {
 				std::string deletionPrompt = "Enter a number to delete from the linked list.";
 				
-				if (handleActions(deletionPrompt, head, 3)) {
+				if (handleActions(deletionPrompt, &head, 3)) {
 					continue;
 				}
 				else {
@@ -68,7 +68,7 @@ void LinkedList::control() {
 }
 
 // Handles action function calls
-bool LinkedList::handleActions(std::string prompt, Node* head, int type) {
+bool LinkedList::handleActions(std::string prompt, Node** head, int type) {
 		// Check if linked list is empty
 		int stopDelete, number;
 
@@ -77,17 +77,17 @@ bool LinkedList::handleActions(std::string prompt, Node* head, int type) {
 
 		// Delete new node
 		if (type == 1) {
-			prepend(&head, number);
+			prepend(head, number);
 		}
 		else if (type == 2) {
-			append(&head, number);
+			append(head, number);
 		}
 		else {
-			deletion(&head, number);
+			deletion(head, number);
 		}
 
 		// Print list so far
-		printList(head);
+		printList(*head);
 
 		if (head != nullptr) {
 			std::cout << "Enter 0 to delete, prepend, or append another value or 1 to exit." << std::endl;
