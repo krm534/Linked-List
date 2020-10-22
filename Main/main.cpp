@@ -11,6 +11,7 @@ int main() {
 	tests->testAppend();
 	tests->testPrepend();
 	tests->testDelete();
+	tests->testInsertion();
 
 	// Main
 	// LinkedList* linkedList = new LinkedList();

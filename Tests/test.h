@@ -9,4 +9,5 @@ class Test {
         void testAppend();
         void testPrepend();
         void testDelete();
+        void testInsertion();
 };

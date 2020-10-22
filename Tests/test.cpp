@@ -41,3 +41,20 @@ void Test::testDelete() {
 	test->printList(head);
     std::cout << "-----------------------" << std::endl;
 }
+
+void Test::testInsertion() {
+	Node* head = nullptr;
+	LinkedList* test = new LinkedList();
+
+	for (int i = 0; i < 100; i++) {
+		test->prepend(&head, i + 1);
+	}
+
+	test->insert(&head, 21, 1);
+	test->insert(&head, 50, 21);
+	test->insert(&head, 48, 100);
+	test->insert(&head, 200, 101);
+
+	test->printList(head);
+    std::cout << "-----------------------" << std::endl;
+}

@@ -7,6 +7,7 @@ class LinkedList {
     public:
         void append(Node** head, int data);
         void prepend(Node** head, int data);
+        void insert(Node** head, int newNumber, int beforeNumber);
         void freeUpMemory(Node** mem);
         void deletion(Node** head, int number);
         void printList(Node* head);
