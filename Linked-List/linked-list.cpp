@@ -8,7 +8,7 @@ void LinkedList::control() {
 	Node* head = nullptr;
 
 	while (true) {
-		std::cout << "Enter 1 to prepend, 2 to append, 3 to delete, and 4 to insert." << std::endl;
+		std::cout << "Enter 1 to prepend, 2 to append, 3 to delete, 4 to insert, and 5 to view list." << std::endl;
 		std::cin >> linkedListType;
 
 		// Prepend
@@ -63,6 +63,10 @@ void LinkedList::control() {
 				}
 			}
 		}
+		// View
+		else if (linkedListType == 5) {
+			printList(head);
+		}
 		// Exception
 		else {
 			std::cout << "Error occurred" << std::endl;
@@ -108,7 +112,7 @@ bool LinkedList::handleActions(std::string prompt, Node** head, int type) {
 			// Print list so far
 			printList(*head);
 
-			std::cout << "Enter 0 to delete, prepend, or append another value or 1 to exit." << std::endl;
+			std::cout << "Enter 0 to delete, prepend, append, or insert another value or 1 to exit." << std::endl;
 			std::cin >> stopDelete;
 
 			if (stopDelete == 0) {
@@ -130,29 +134,35 @@ bool LinkedList::handleActions(std::string prompt, Node** head, int type) {
 // Insert Node between two numbers in Linked List
 void LinkedList::insert(Node** head, int newNumber, int beforeNumber) {
 	Node* last = *head;
-	bool hasNext = false;
 
-	if (last == NULL) {
+	if (last == nullptr) {
 		std::cout << "Empty Linked List" << std::endl;
 		return;
 	}
 
-	while (!hasNext) {
+	while (true) {
+		if (last == nullptr) {
+			break;
+		}
+		
 		if (last->data == beforeNumber) {
-			if (last->next == nullptr) {
-				hasNext = true;
-			}
-			
 			Node* newNode = new Node();
 			newNode->data = newNumber;
-			newNode->next = last->next;
-			last->next = newNode;
-		}
 
-		if (last->next == nullptr) {
-			break;
+			if (last->next == nullptr) {
+				newNode->next = nullptr;
+			} else {
+				newNode->next = last->next;
 			}
 
+			last->next = newNode;
+
+			if (beforeNumber == newNumber) {
+				last = last->next->next;
+				continue;
+			}
+		}
+		
 		last = last->next;
 	}
 }
@@ -216,7 +226,7 @@ void LinkedList::deletion(Node** head, int number) {
 	Node* last = *head;
 	Node* next = nullptr;
 
-	// Check if any node exist in linked list
+	// Check if any node exists in linked list
 	if (last == NULL) {
 		std::cout << "Empty Linked List" << std::endl;
 		return;
@@ -228,37 +238,29 @@ void LinkedList::deletion(Node** head, int number) {
 		return;
 	}
 
-	// Accomodate for first node deletion
+	// Check if node to delete is first node
 	if (last->data == number) {
-		*head = nullptr;
-
-		if (last->next != nullptr) {
-			*head = last->next;
-		}
-
+		*head = last->next;
+		freeUpMemory(&last);
 		return;
 	}
 
-	while (last->next != NULL) {
+	// Loop through and find node to delete
+	while (last->next != nullptr) {
 		next = last->next;
 		if (next->data == number) {
-			break;
+			if (next->next == nullptr) {
+				last->next = nullptr;
+			} else {
+				last->next = next->next;
+			}
+			freeUpMemory(&next);
 		}
 		else {
 			last = last->next;
 			continue;
 		}
 	}
-
-	// Rearrange pointers
-	if (next->next == NULL) {
-		last->next = nullptr;
-	}
-	else {
-		last->next = next->next;
-	}
-
-	freeUpMemory(&next);
 }
 
 // Print Linked List
