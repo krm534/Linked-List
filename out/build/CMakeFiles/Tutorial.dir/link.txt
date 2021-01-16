@@ -1,0 +1,1 @@
+/usr/bin/c++     CMakeFiles/Tutorial.dir/Tests/test.cpp.o  -o Tutorial   -L/home/kaleb/Documents/Linked-List/Linked-List  -Wl,-rpath,/home/kaleb/Documents/Linked-List/Linked-List Linked-List/liblinked-list.a 

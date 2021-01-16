@@ -1,0 +1,28 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../../Linked-List/Header.h
+
+../../Linked-List/linked-list.h
+iostream
+-
+string
+-
+Header.h
+../../Linked-List/Header.h
+
+/home/kaleb/Documents/Linked-List/Tests/test.cpp
+iostream
+-
+linked-list.h
+-
+Header.h
+-
+cstdlib
+-
+

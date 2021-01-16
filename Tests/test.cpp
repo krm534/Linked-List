@@ -1,7 +1,11 @@
-#include "test.h"
+#include <iostream>
+#include <linked-list.h>
+#include <Header.h>
+#include <cstdlib>
 
-void Test::testAppend() {
+int testAppend() {
 	Node* head = nullptr;
+	int counter = 1;
 	LinkedList* test = new LinkedList();
 
 	for (int i = 0; i < 100; i++) {
@@ -9,52 +13,70 @@ void Test::testAppend() {
 	}
 
 	test->printList(head);
-    std::cout << "-----------------------" << std::endl;
+
+	Node* loopInstance = head;
+	while (loopInstance->next != nullptr) {
+		loopInstance = loopInstance->next;
+		counter++;
+	}
+
+	if (head->data == 1 && loopInstance->data == 100 && counter == 100) {
+		return 0;
+	} else {
+		return 1;
+	}
 }
 
-void Test::testPrepend() {
-    Node* head = nullptr;
-	LinkedList* test = new LinkedList();
+// void testPrepend() {
+//     Node* head = nullptr;
+// 	LinkedList* test = new LinkedList();
 
-	for (int i = 0; i < 100; i++) {
-	 	test->prepend(&head, i + 1);
-	}
+// 	for (int i = 0; i < 100; i++) {
+// 	 	test->prepend(&head, i + 1);
+// 	}
 
-	test->printList(head);
-    std::cout << "-----------------------" << std::endl;
-}
+// 	test->printList(head);
+//     std::cout << "-----------------------" << std::endl;
+// }
 
-void Test::testDelete() {
-	Node* head = nullptr;
-	LinkedList* test = new LinkedList();
+// void testDelete() {
+// 	Node* head = nullptr;
+// 	LinkedList* test = new LinkedList();
 
-	for (int i = 0; i < 100; i++) {
-		test->prepend(&head, i + 1);
-	}
+// 	for (int i = 0; i < 100; i++) {
+// 		test->prepend(&head, i + 1);
+// 	}
 
-	test->printList(head);
+// 	test->printList(head);
 
-	for (int i = 0; i < 100; i++) {
-		test->deletion(&head, i + 1);
-	}
+// 	for (int i = 0; i < 100; i++) {
+// 		test->deletion(&head, i + 1);
+// 	}
 
-	test->printList(head);
-    std::cout << "-----------------------" << std::endl;
-}
+// 	test->printList(head);
+//     std::cout << "-----------------------" << std::endl;
+// }
 
-void Test::testInsertion() {
-	Node* head = nullptr;
-	LinkedList* test = new LinkedList();
+// void testInsertion() {
+// 	Node* head = nullptr;
+// 	LinkedList* test = new LinkedList();
 
-	for (int i = 0; i < 100; i++) {
-		test->prepend(&head, i + 1);
-	}
+// 	for (int i = 0; i < 100; i++) {
+// 		test->prepend(&head, i + 1);
+// 	}
 
-	test->insert(&head, 21, 1);
-	test->insert(&head, 50, 21);
-	test->insert(&head, 48, 100);
-	test->insert(&head, 200, 101);
+// 	test->insert(&head, 21, 1);
+// 	test->insert(&head, 50, 21);
+// 	test->insert(&head, 48, 100);
+// 	test->insert(&head, 200, 101);
 
-	test->printList(head);
-    std::cout << "-----------------------" << std::endl;
+// 	test->printList(head);
+//     std::cout << "-----------------------" << std::endl;
+// }
+
+int main() {
+	return testAppend();
+	// testPrepend();
+	// testDelete();
+	// testInsertion();
 }

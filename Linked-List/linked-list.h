@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 #include <string>
-#include "../Main/Header.h"
+#include "Header.h"
 
 class LinkedList {
     public:

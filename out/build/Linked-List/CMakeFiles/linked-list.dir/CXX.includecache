@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/kaleb/Documents/Linked-List/Linked-List/Header.h
+
+/home/kaleb/Documents/Linked-List/Linked-List/linked-list.cpp
+linked-list.h
+/home/kaleb/Documents/Linked-List/Linked-List/linked-list.h
+
+/home/kaleb/Documents/Linked-List/Linked-List/linked-list.h
+iostream
+-
+string
+-
+Header.h
+/home/kaleb/Documents/Linked-List/Linked-List/Header.h
+
