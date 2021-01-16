@@ -1,8 +1,0 @@
-/home/kaleb/Documents/Linked-List/CMakeFiles/rebuild_cache.dir
-/home/kaleb/Documents/Linked-List/CMakeFiles/edit_cache.dir
-/home/kaleb/Documents/Linked-List/CMakeFiles/test.dir
-/home/kaleb/Documents/Linked-List/CMakeFiles/tester.dir
-/home/kaleb/Documents/Linked-List/Linked-List/CMakeFiles/rebuild_cache.dir
-/home/kaleb/Documents/Linked-List/Linked-List/CMakeFiles/edit_cache.dir
-/home/kaleb/Documents/Linked-List/Linked-List/CMakeFiles/test.dir
-/home/kaleb/Documents/Linked-List/Linked-List/CMakeFiles/linked-list.dir
